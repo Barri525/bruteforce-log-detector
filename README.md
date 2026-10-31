@@ -81,7 +81,6 @@ El proyecto se desarrolló siguiendo una especificación escrita antes del códi
 
 ## Próximos pasos
 
-- Probar con logs reales públicos y publicar los resultados
 - Gráficos y geolocalización de IPs
 - Análisis de ataques capturados en un honeypot propio
 
