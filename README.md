@@ -93,3 +93,44 @@ Proyecto con fines educativos. Los logs de ejemplo usan IPs de rangos reservados
 
 MIT
 
+
+## Resultados con datos reales
+
+Probé el detector con una muestra de 2.000 líneas de un servidor OpenSSH real, del conjunto de datos público [Loghub](https://github.com/logpai/loghub).
+
+| Métrica | Resultado |
+|---|---|
+| Líneas analizadas | 2.000 |
+| Intentos fallidos detectados | 520 (26% de la muestra) |
+| IPs sospechosas (umbral 5) | 10 |
+| Intentos de esas 10 IPs | 496 (95% de los fallos) |
+| Usuario más probado | `root`, con 370 intentos (71%) |
+
+Las 5 IPs con más intentos (últimos números ocultos):
+
+| IP | Intentos |
+|---|---|
+| 183.62.140.xxx | 286 |
+| 187.141.143.xxx | 80 |
+| 103.99.0.xxx | 46 |
+| 112.95.230.xxx | 26 |
+| 5.188.10.xxx | 18 |
+
+**Qué muestran los datos:**
+- Una sola IP concentra más de la mitad de los intentos, un patrón típico de herramientas automáticas.
+- Casi todos los intentos vienen de muy pocas direcciones, por lo que bloquear unas pocas detendría gran parte del ataque.
+- Los atacantes prueban primero nombres de usuario comunes como `root`, `admin`, `support` y `oracle`.
+
+**Un caso que encontré con datos reales:** el primer análisis contó 519 intentos en lugar de 520. Una línea tenía un usuario con un espacio extra y mi expresión regular no la reconocía. Corregí la plantilla y agregué una prueba para ese caso.
+
+### Cómo reproducirlo
+
+1. Descarga `OpenSSH_2k.log` desde la carpeta [OpenSSH de Loghub](https://github.com/logpai/loghub/tree/master/OpenSSH).
+2. Colócalo en la carpeta del proyecto y ejecuta `python detector.py OpenSSH_2k.log`.
+
+No incluyo el archivo en este repositorio; los datos pertenecen a sus autores.
+
+### Fuente de los datos
+
+Zhu, J., He, S., He, P., Liu, J., Lyu, M. R. *Loghub: A Large Collection of System Log Datasets for AI-driven Log Analytics.* IEEE ISSRE, 2023. <https://github.com/logpai/loghub>
+
