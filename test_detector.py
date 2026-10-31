@@ -39,6 +39,17 @@ class TestAnalizarLinea(unittest.TestCase):
         )
         self.assertIsNone(analizar_linea(linea))
 
+    def test_usuario_con_espacio_extra(self):
+        linea = (
+            "Dec 10 08:24:35 LabSZ sshd[24361]: Failed password "
+            "for invalid user  0101 from 5.188.10.180 port 36279 ssh2"
+        )
+        self.assertEqual(analizar_linea(linea), ("5.188.10.180", "0101"))
+
+
+
+    
+
 
 class TestAnalizarArchivo(unittest.TestCase):
     def crear_log(self, contenido):
@@ -77,4 +88,3 @@ class TestAnalizarArchivo(unittest.TestCase):
 if __name__ == "__main__":
     unittest.main()
 
-    

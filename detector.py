@@ -4,9 +4,12 @@ import re
 from collections import Counter
 
 # Busca líneas de intento fallido y extrae usuario e IP
+
+
+
 PATRON = re.compile(
-    r"Failed password for (?:invalid user )?(?P<usuario>\S+) "
-    r"from (?P<ip>\d{1,3}(?:\.\d{1,3}){3})"
+    r"Failed password for (?:invalid user\s+)?(?P<usuario>.+?)\s+"
+    r"from\s+(?P<ip>\d{1,3}(?:\.\d{1,3}){3})"
 )
 
 
@@ -90,4 +93,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-    
