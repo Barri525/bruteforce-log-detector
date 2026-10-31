@@ -214,6 +214,23 @@ tempCodeRunnerFile.py
 # Marimo
 marimo/_static/
 marimo/_lsp/
+
+# Datos y archivos generados por el proyecto
+datos.db
+panel.html
+reporte.json
+
+# Logs de terceros (descargar por separado, ver README)
+OpenSSH*.log
+
+# Herramientas de revisión locales
+buscar_perdida.py
+
+# Log de ejemplo del proyecto: este sí se incluye
+!auth.log
+
+
+
 __marimo__/
 
 # Streamlit
